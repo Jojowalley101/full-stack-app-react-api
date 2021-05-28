@@ -4,5 +4,15 @@
  * The component also renders a "Create Course" button that when clicked sends a POST request to the REST API's /api/courses route.
  * This component also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses).
  */
+// import React, { Component } from 'react';
 
+// export default class CreateCourse extends Component {
+//     render() {
+//         return (
+            
+
+                    
+//         )
+//     }
+// }
 
