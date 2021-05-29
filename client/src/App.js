@@ -12,14 +12,14 @@ import withContext from './Context';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 
-// import Public from './components/Public';
+
 import NotFound from './components/NotFound';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
 import Authenticated from './components/Authenticated';
 
-//import withContext from './Context';
+
 import PrivateRoute from './PrivateRoute';
 
 const CoursesWithContext = withContext(Courses);
