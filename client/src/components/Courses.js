@@ -44,3 +44,4 @@ export default class Courses extends Component {
         )
     }
 }
+

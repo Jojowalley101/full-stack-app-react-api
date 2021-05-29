@@ -1,3 +1,4 @@
+import Courses from './components/CourseDetail';
 import config from './config';
 
 export default class Data {
@@ -60,6 +61,33 @@ export default class Data {
     }
   }
 
+
+  async getCourse(id) {
+    const response = await this.api(`/courses/${id}`, 'GET', null);
+    if (response.status === 200) {
+      return response.json().then(data => data);
+    }
+    else if (response.status === 401) {
+      return null;
+    }
+    else {
+      throw new Error();
+    }
+  }
+  async createCourses() {
+    const response = await this.api(`/courses`, 'POST', null);
+    if (response.status === 200) {
+      return response.json().then(data => data);
+    }
+    else if (response.status === 401) {
+      return null;
+    }
+    else {
+      throw new Error();
+    }
+  }
+
+  
 
 
 

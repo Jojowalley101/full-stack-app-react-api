@@ -9,6 +9,9 @@ import {
 import Courses from './components/Courses';
 import CourseDetail from "./components/CourseDetail";
 import withContext from './Context';
+import CreateCourse from './components/CreateCourse';
+import UpdateCourse from './components/UpdateCourse';
+
 // import Public from './components/Public';
 // import NotFound from './components/NotFound';
 // import UserSignUp from './components/UserSignUp';
@@ -20,6 +23,9 @@ import withContext from './Context';
 // import PrivateRoute from './PrivateRoute';
 
 const CoursesWithContext = withContext(Courses);
+const CourseDetailWithContext = withContext(CourseDetail);
+const propsWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 //const HeaderWithContext = withContext(Header);
 
 
@@ -36,11 +42,13 @@ export default () => (
 
       <Switch>
         <Route exact path="/" component={CoursesWithContext} />
-        <Route path="/CourseDetail" component={CourseDetail} />
+        <Route path="/courses/:id" component={CourseDetailWithContext} />
+        <Route path="/courses/" component={propsWithContext} />
+        <Route path="/courses/:id" component={UpdateCourseWithContext} />
         {/* <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        <Route component={NotFound} /> */}
+        <Route component={NotFound} />  */}
       </Switch>
     </div>
   </Router>

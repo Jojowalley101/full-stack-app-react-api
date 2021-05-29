@@ -13,7 +13,7 @@ export default class Header extends React.PureComponent {
         const authUser = context.authenticatedUser;
         return (
             <div className="header">
-                <div className="bounds">
+                <div className="wrap">
                     <h1 className="header--logo">Courses</h1>
                     <nav>
                         {authUser ? (
