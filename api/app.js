@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const { sequelize }  = require('./models');
 const routes = require('./routes');
 
+
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 
@@ -24,6 +25,8 @@ app.get('/', (req, res) => {
     message: 'Welcome to the REST API project!',
   });
 });
+
+// cookies
 
 
 //makes sure api is in json and that it goes to the correct routes
