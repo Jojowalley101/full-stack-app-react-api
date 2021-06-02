@@ -39,7 +39,7 @@ export default class Courses extends Component {
                         {(authUser && authUser.id === course.userId) ? (
                         <div>
                         <a className="button" href={`/courses/${course.id}/update`}>Update Course</a>
-                        <a className="button" href="#">Delete Course</a>
+                        <a className="button" href={`/courses/${course.id}/delete`}>Delete Course</a>
                         <a className="button button-secondary" href="/">Return to List</a> 
                         </div> ) :
                         ( <a className="button button-secondary" href="/">Return to List</a> )} 
