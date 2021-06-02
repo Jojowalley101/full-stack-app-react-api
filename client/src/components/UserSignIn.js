@@ -6,7 +6,8 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CreateCourse from './CreateCourse';
+import Form from './Form';
+
 
 export default class UserSignIn extends Component {
     state = {
@@ -24,8 +25,8 @@ export default class UserSignIn extends Component {
 
         return (
                 <div className="form--centered">
-                    <h1>Sign In</h1>
-                    <CreateCourse
+                    <h2>Sign In</h2>
+                    <Form
                         cancel={this.cancel}
                         errors={errors}
                         submit={this.submit}
@@ -35,10 +36,10 @@ export default class UserSignIn extends Component {
                                 <input
                                     id="emailAddress"
                                     name="emailAddress"
-                                    type="email"
+                                    type="text"
                                     value={emailAddress}
                                     onChange={this.change}
-                                    placeholder="Email Adress" />
+                                    placeholder="Email Address" />
                                 <input
                                     id="password"
                                     name="password"
@@ -70,7 +71,7 @@ export default class UserSignIn extends Component {
         const { context } = this.props;
         const { from } = this.props.location.state || { from: { pathname: '/authenticated' } };
         const { emailAddress, password } = this.state;
-
+        
         context.actions.signIn(emailAddress, password)
             .then((emailAddress) => {
                 if (emailAddress === null) {

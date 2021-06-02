@@ -1,5 +1,3 @@
-
-
 /**
 * UserSignUp - This component provides the "Sign Up" screen by rendering a form that allows a user to sign up by creating a new account.
 * The component also renders a "Sign Up" button that when clicked sends a POST request to the REST API's /api/users route and signs in the user.
@@ -7,10 +5,9 @@
 */
 
 
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CreateCourse from './CreateCourse';
+import Form from './Form';
 
 
 export default class UserSignUp extends Component {
@@ -31,14 +28,13 @@ export default class UserSignUp extends Component {
         } = this.state;
 
         return (
-            <div className="wrap">
                 <div className="form--centered">
-                    <h1>Sign Up</h1>
-                    <CreateCourse
+                    <h2>Sign Up</h2>
+                    <Form
                         cancel={this.cancel}
                         errors={errors}
                         submit={this.submit}
-                        submitButtonText="Sign Up"
+                        submitButtonText="Sign In"
                         elements={() => (
                             <React.Fragment>
                                 <input
@@ -58,7 +54,7 @@ export default class UserSignUp extends Component {
                                 <input
                                     id="emailAddress"
                                     name="emailAddress"
-                                    type="email"
+                                    type="text"
                                     value={emailAddress}
                                     onChange={this.change}
                                     placeholder="Email Address" />
@@ -82,19 +78,16 @@ export default class UserSignUp extends Component {
                         Already have a user account? <Link to="/signin">Click here</Link> to sign in!
           </p>
                 </div>
-            </div>
         );
     }
 
     change = (event) => {
-        const firstName = event.target.firstName;
-        const lastName = event.target.lastName;
+        const name = event.target.name;
         const value = event.target.value;
 
         this.setState(() => {
             return {
-                [firstName]: value,
-                [lastName]: value
+                [name]: value
             };
         });
     }

@@ -4,58 +4,127 @@
  * The component also renders a "Create Course" button that when clicked sends a POST request to the REST API's /api/courses route.
  * This component also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses).
  */
-import React from 'react';
 
-export default (props) => {
-  const {
-    cancel,
-    errors,
-    submit,
-    submitButtonText,
-    elements,
-  } = props;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    submit();
-  }
 
-  function handleCancel(event) {
-    event.preventDefault();
-    cancel();
-  }
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Form from './Form';
+//mport CreateCourse from './Form';
 
-  return (
-    <div className="wrap">
-        <h2>Create Course</h2>
-      <ErrorsDisplay errors={errors} />
-      <form onSubmit={handleSubmit}>
-        {elements()}
-        <div className="main--flex">
-          <button className="button" type="submit">{submitButtonText}</button>
-          <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
-        </div>
-      </form>
-    </div>
-  );
+export default class UserSignIn extends Component {
+    state = {
+        title: '',
+        description: '',
+        estimatedTime: '',
+        materialsNeeded: '',
+        errors: []
+    }
+
+    render() {
+        const {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
+            errors,
+        } = this.state;
+
+
+        const authUser = this.props.context.authenticatedUser;
+
+        return (
+            <div className="wrap">
+                <h1>Create Course</h1>
+                <Form
+                    cancel={this.cancel}
+                    errors={errors}
+                    submit={this.submit}
+                    submitButtonText="Create Course"
+                    elements={() => (
+                        <React.Fragment>
+                            <label >Course Title</label>
+                            <input
+                                id="title"
+                                name="title"
+                                type="text"
+                                value={title}
+                                onChange={this.change}
+                                placeholder="Course Title" />
+                            <p>By {authUser.firstName} {authUser.lastName} </p>
+                            <label >Course Description</label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                type="text"
+                                value={description}
+                                onChange={this.change}
+                                placeholder="Description" />
+                            <label >Estimated Time</label>
+                            <input
+                                id="estimatedTime"
+                                name="estimatedTime"
+                                type="text"
+                                value={estimatedTime}
+                                onChange={this.change}
+                                placeholder="Estimated Time" />
+                            <label >Materials Needed</label>
+                            <textarea
+                                id="materialsNeeded"
+                                name="materialsNeeded"
+                                type="text"
+                                value={materialsNeeded}
+                                onChange={this.change}
+                                placeholder="Materials Needed" />
+                        </React.Fragment>
+                    )} />
+                {/* <p>
+                    Don't have a user account? <Link to="/signup">Click here</Link> to sign up!
+          </p> */}
+            </div>
+        );
+    }
+
+change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState(() => {
+        return {
+            [name]: value
+        };
+    });
 }
 
-function ErrorsDisplay({ errors }) {
-  let errorsDisplay = null;
+submit = () => {
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
 
-  if (errors.length) {
-    errorsDisplay = (
-      <div>
-        <h2 className="validation--errors--label">Validation errors</h2>
-        <div className="validation-errors">
-          <ul>
-            {errors.map((error, i) => <li key={i}>{error}</li>)}
-          </ul>
-        </div>
-      </div>
-    );
-  }
+    const {
+        title,
+        description,
+        estimatedTime,
+        materialsNeeded
+    } = this.state;
 
-  return errorsDisplay;
+    const course = { title, description, estimatedTime, materialsNeeded, userId }
+    
+    context.data.createCourses(course, authUser.emailAddress, authUser.password)
+        .then((errors) => {
+            if (errors.length) {
+                this.setState({ errors })
+            } else {
+                this.props.history.push("/");
+            }
+        })
+
+        .catch((error) => {
+            console.error(error);
+            this.props.history.push('/error');
+        });
 }
 
+cancel = () => {
+    this.props.history.push('/');
+}
+}

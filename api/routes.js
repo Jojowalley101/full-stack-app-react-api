@@ -24,8 +24,8 @@ const router = express.Router();
 router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
     const user = req.currentUser;
     //console.log(user);
-    let authUser = await Users.findAll({where: {id: user.id}});
-    res.status(200).json(authUser);
+   //let authUser = await Users.findAll({where: {id: user.id}});
+    res.status(200).json({id: user.id, firstName: user.firstName, lastName: user.lastName, emailAddress: user.emailAddress});
 }));
 
 // /api/users POST route that will create a new user, set the Location header to "/", and return a 201 HTTP status code and no content.
