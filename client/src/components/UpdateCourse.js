@@ -27,6 +27,7 @@ componentDidMount() {
         .then(course => this.setState({ title: course.title, description: course.description, estimatedTime: course.description, materialsNeeded: course.materialsNeeded, userStuff: course.User }))
         .catch((error) => {
             console.log(error);
+            this.props.history.push('/forbidden');
         });
 }
 
@@ -123,6 +124,7 @@ submit = () => {
     )
     .catch((error) => {
         console.log(error);
+        this.props.history.push('/notfound');
         
     });
 }

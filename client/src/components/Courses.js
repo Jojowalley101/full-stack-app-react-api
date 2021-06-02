@@ -6,8 +6,6 @@
  */
 
 import React, { Component } from 'react';
-import CourseDetail from './CourseDetail';
-import Form from './Form';
 //import Data from '../Data';
 
 export default class Courses extends Component {

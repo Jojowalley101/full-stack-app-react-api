@@ -1,4 +1,4 @@
-import Courses from './components/CourseDetail';
+//import Courses from './components/CourseDetail';
 import config from './config';
 
 export default class Data {
@@ -126,11 +126,4 @@ export default class Data {
       throw new Error();
     }
   }
-
-
-
-
-
-
-
 }
