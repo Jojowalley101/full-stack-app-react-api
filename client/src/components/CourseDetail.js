@@ -11,14 +11,16 @@ export default class Courses extends Component {
     state = {
         course: [],
         user: {},
-        id: this.props.match.params.id
+        id: this.props.match.params.id,
+        errors: []
 
     }
 
     componentDidMount() {
         const context = this.props.context;
-        console.log(context);
-        console.log(context.data.getCourse(this.state.id))
+
+        console.log(this.state.id);
+        //console.log(context.data.getCourse(this.state.id))
         context.data.getCourse(this.state.id)
             .then(course => this.setState({ course , user: course.User }))
             .catch((error) => {
@@ -26,7 +28,7 @@ export default class Courses extends Component {
             });
     }
 
-    handleClick(props) {
+    handleClick() {
         //const context = this.props.context;
         //console.log(id);
         //const id = this.state.id;
@@ -38,18 +40,21 @@ export default class Courses extends Component {
         //console.log(this.state.id);
         //console.log(context.authenticatedUser.emailAddress);
         //console.log(context.authenticatedUser.password);
-        console.log(this.props.match.params.id)
+        //console.log(this.props.match.params.id)
         this.props.context.data.deleteCourse(this.props.match.params.id, this.props.context.authenticatedUser.emailAddress, this.props.context.authenticatedUser.password)
-        .then(errors => { 
-            if (errors) {
-                console.log(errors);
-            } else {
-                this.props.history.push('/error');
+        .then(errors => {
+            if (errors.length === 0) {
+                this.setState({errors});
+            }
+            // else if (errors) {
+            //     console.log(errors);
+             else {
+                this.props.history.push('/');
             }
         })
             .catch((error) => {
                 console.log(error);
-                //this.props.history.push('/error');
+                this.props.history.push('/error');
             });
     }
 
@@ -68,7 +73,7 @@ export default class Courses extends Component {
                         {(authUser && authUser.id === course.userId) ? (
                         <div>
                         <a className="button" href={`/courses/${course.id}/update`}>Update Course</a>
-                        <a className="button" onClick={this.handleClick(this.props)}>Delete Course</a>
+                        <a className="button" name="Delete Course" onSubmit={this.handleClick}>Delete Course</a>
                         <a className="button button-secondary" href="/">Return to List</a> 
                         </div> ) :
                         ( <a className="button button-secondary" href="/">Return to List</a> )} 

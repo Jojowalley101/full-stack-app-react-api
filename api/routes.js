@@ -142,7 +142,10 @@ router.put("/courses/:id", authenticateUser, asyncHandler(async (req, res) => {
 router.delete("/courses/:id", authenticateUser, asyncHandler(async (req, res) => {
 
         const courseDeleteIndividual = await Courses.findByPk(req.params.id);
-        if (req.currentUser.id !== courseDeleteIndividual.id) {
+        console.log(req.currentUser.id);
+
+        console.log(courseDeleteIndividual.userId);
+        if (req.currentUser.id !== courseDeleteIndividual.userId) {
             res.status(403).end();
         } else {
             await courseDeleteIndividual.destroy();
