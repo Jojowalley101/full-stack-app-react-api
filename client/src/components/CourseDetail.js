@@ -40,10 +40,10 @@ export default class Courses extends Component {
         //console.log(this.state.id);
         //console.log(context.authenticatedUser.emailAddress);
         //console.log(context.authenticatedUser.password);
-        //console.log(this.props.match.params.id)
+        console.log(this.props.match.params.id);
         this.props.context.data.deleteCourse(this.props.match.params.id, this.props.context.authenticatedUser.emailAddress, this.props.context.authenticatedUser.password)
         .then(errors => {
-            if (errors.length === 0) {
+            if (errors === null) {
                 this.setState({errors});
             }
             // else if (errors) {
@@ -73,7 +73,7 @@ export default class Courses extends Component {
                         {(authUser && authUser.id === course.userId) ? (
                         <div>
                         <a className="button" href={`/courses/${course.id}/update`}>Update Course</a>
-                        <a className="button" name="Delete Course" onSubmit={this.handleClick}>Delete Course</a>
+                        <button className="button" onClick={this.handleClick}>Delete Course</button>
                         <a className="button button-secondary" href="/">Return to List</a> 
                         </div> ) :
                         ( <a className="button button-secondary" href="/">Return to List</a> )} 
