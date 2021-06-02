@@ -108,7 +108,7 @@ export default class UpdateCourse extends Component {
 
         const course = { title, description, estimatedTime, materialsNeeded }
 
-        context.data.deleteCourse(id, course, emailAddress, password)
+        context.data.deleteCourse(id, emailAddress, password)
             .then((errors) => {
                 if (errors.length) {
                     this.setState({ errors })

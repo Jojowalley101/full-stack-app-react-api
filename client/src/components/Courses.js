@@ -26,10 +26,10 @@ export default class Courses extends Component {
     }
 
     render() {
-        console.log(this.state);
+        //console.log(this.state);
         const courses = this.state.courses;
 
-        console.log(courses);
+       //console.log(courses);
         return (
             <div className="wrap main--grid">
                 {courses.map(course => 

@@ -10,13 +10,15 @@ import React, { Component } from 'react';
 export default class Courses extends Component {
     state = {
         course: [],
-        user: { },
+        user: {},
         id: this.props.match.params.id
 
     }
 
     componentDidMount() {
         const context = this.props.context;
+        console.log(context);
+        console.log(context.data.getCourse(this.state.id))
         context.data.getCourse(this.state.id)
             .then(course => this.setState({ course , user: course.User }))
             .catch((error) => {
@@ -24,8 +26,35 @@ export default class Courses extends Component {
             });
     }
 
+    handleClick(props) {
+        //const context = this.props.context;
+        //console.log(id);
+        //const id = this.state.id;
+        // console.log(this.state.user.id);
+        // console.log(this.state.user.emailAddress);
+        //console.log(id);
+        //console.log(this.state.id)
+        //console.log(context.uthenticatedUser);
+        //console.log(this.state.id);
+        //console.log(context.authenticatedUser.emailAddress);
+        //console.log(context.authenticatedUser.password);
+        console.log(this.props.match.params.id)
+        this.props.context.data.deleteCourse(this.props.match.params.id, this.props.context.authenticatedUser.emailAddress, this.props.context.authenticatedUser.password)
+        .then(errors => { 
+            if (errors) {
+                console.log(errors);
+            } else {
+                this.props.history.push('/error');
+            }
+        })
+            .catch((error) => {
+                console.log(error);
+                //this.props.history.push('/error');
+            });
+    }
+
     render() {
-        console.log(this.state);
+       //console.log(this.state);
         const course = this.state.course;
         const user = this.state.user;
         const authUser = this.props.context.authenticatedUser;
@@ -39,7 +68,7 @@ export default class Courses extends Component {
                         {(authUser && authUser.id === course.userId) ? (
                         <div>
                         <a className="button" href={`/courses/${course.id}/update`}>Update Course</a>
-                        <a className="button" href={`/courses/${course.id}/delete`}>Delete Course</a>
+                        <a className="button" onClick={this.handleClick(this.props)}>Delete Course</a>
                         <a className="button button-secondary" href="/">Return to List</a> 
                         </div> ) :
                         ( <a className="button button-secondary" href="/">Return to List</a> )} 
