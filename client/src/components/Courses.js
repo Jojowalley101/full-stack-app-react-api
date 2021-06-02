@@ -33,7 +33,7 @@ export default class Courses extends Component {
         return (
             <div className="wrap main--grid">
                 {courses.map(course => 
-                    <a className="course--module course--link" href={`courses/${course.id}`}>
+                    <a className="course--module course--link" href={`courses/${course.id}`} key={course.id}>
                         <h2 className="course--label">Course</h2>
                         <h3 className="course--title">{course.title}</h3>
                     </a>

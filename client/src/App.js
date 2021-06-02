@@ -9,7 +9,7 @@ import Header from './components/Header';
 import Courses from './components/Courses';
 import CourseDetail from "./components/CourseDetail";
 import withContext from './Context';
-import CreateCourse from './components/Form';
+import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 
 
@@ -17,7 +17,7 @@ import NotFound from './components/NotFound';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
-import Authenticated from './components/Authenticated';
+// import Authenticated from './components/Authenticated';
 
 
 import PrivateRoute from './PrivateRoute';

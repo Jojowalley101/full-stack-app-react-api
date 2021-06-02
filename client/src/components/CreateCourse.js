@@ -99,6 +99,7 @@ change = (event) => {
 submit = () => {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
+    const userId = authUser.id;
 
     const {
         title,

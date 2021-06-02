@@ -29,9 +29,9 @@ export default class Courses extends Component {
         const course = this.state.course;
         const user = this.state.user;
         const authUser = this.props.context.authenticatedUser;
-        console.log(authUser.id);
-        console.log(user);
-        console.log(course.userId);
+        // console.log(authUser.id);
+        // console.log(user);
+        // console.log(course.userId);
         return (
             <div>
             <div className="actions--bar">
