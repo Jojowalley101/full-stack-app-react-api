@@ -33,6 +33,7 @@ const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
+const NotFoundWithContext = withContext(NotFound);
 const UnhandledErrorWithContext = withContext(UnhandledError);
 
 export default () => (
@@ -49,7 +50,7 @@ export default () => (
         <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        <Route path="/notfound" component={NotFound} /> 
+        <Route path="/notfound" component={NotFoundWithContext} /> 
         <Route path="/error" component={UnhandledErrorWithContext} />
       </Switch>
     </div>
