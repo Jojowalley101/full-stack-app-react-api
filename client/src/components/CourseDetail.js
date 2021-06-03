@@ -77,15 +77,15 @@ export default class Courses extends Component {
                     <h3 className="course--detail--title">Course Detail</h3>
                     <h4 className="course--name">{course.title}</h4>
                     <p> By { `${user.firstName} ${user.lastName}`} </p>
-                    <p>{course.description}</p>
+                    <p> {course.description}</p>
                    </div>
                 <div>
-                    <ReactMarkdown>
+                    {/* <ReactMarkdown> */}
                     <h3 className="course--detail--title">Estimated Time</h3>
                     <p>{course.estimatedTime}</p>
                     <h3 className="course--detail--title">Materials Needed</h3>
                     <ul className="course--detail--list"></ul> {course.materialsNeeded}
-                    </ReactMarkdown>
+                    {/* </ReactMarkdown> */}
                 </div>
             </div>
             </div>

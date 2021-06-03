@@ -7,6 +7,7 @@
 
 
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import Form from './Form';
 
 export default class UpdateCourse extends Component {
@@ -49,7 +50,7 @@ render() {
                 submit={this.submit}
                 submitButtonText="Update Course"
                 elements={() => (
-                    <React.Fragment>
+                    <ReactMarkdown>
                     <label >Course Title</label>
                         <input
                             id="title"
@@ -83,7 +84,7 @@ render() {
                             value={materialsNeeded}
                             onChange={this.change}
                             placeholder="Materials Needed" />
-                    </React.Fragment>
+                    </ReactMarkdown>
                 )} />
         </div>
     );
