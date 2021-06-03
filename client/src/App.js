@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Switch
 } from 'react-router-dom';
@@ -19,6 +20,7 @@ import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
 import UnhandledError from './components/UnhandledError';
 // import Authenticated from './components/Authenticated';
+import Forbidden from './components/Forbidden';
 
 
 import PrivateRoute from './PrivateRoute';
@@ -35,6 +37,7 @@ const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const NotFoundWithContext = withContext(NotFound);
 const UnhandledErrorWithContext = withContext(UnhandledError);
+const ForbiddenWithContext = withContext(Forbidden);
 
 export default () => (
   <Router>
@@ -43,7 +46,6 @@ export default () => (
 
       <Switch>
         <Route exact path="/" component={CoursesWithContext} />
-       {/* <PrivateRoute path="/authenticated" component={AuthWithContext} /> */}
         <PrivateRoute path="/courses/create" component={propsWithContext} />
         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
         <Route path="/courses/:id" component={CourseDetailWithContext} />
@@ -51,7 +53,11 @@ export default () => (
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
         <Route path="/notfound" component={NotFoundWithContext} /> 
+        <Route path="/forbidden" component={ForbiddenWithContext} />
         <Route path="/error" component={UnhandledErrorWithContext} />
+        <Route>
+          <Redirect to="/notfound" />
+        </Route>
       </Switch>
     </div>
   </Router>

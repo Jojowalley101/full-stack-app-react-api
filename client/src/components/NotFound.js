@@ -1,8 +1,10 @@
 import React from 'react';
 
 export default () => (
+    <main>
     <div className="wrap">
-        <h1>Not Found</h1>
+        <h2>Not Found</h2>
         <p>Sorry! We couldn't find the page you're looking for.</p>
     </div>
+    </main>
 );

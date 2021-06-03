@@ -63,6 +63,7 @@ router.post('/users', asyncHandler(async (req, res) => {
 
 // /* GET courses listing. */
 router.get('/courses', asyncHandler(async (req, res) => {
+    //return res.status(500).json({}); testing 500 errors on the routes
     const dataCourses = await Courses.findAll({
         include: {
             model: Users,
@@ -75,14 +76,20 @@ router.get('/courses', asyncHandler(async (req, res) => {
 // /api/courses /: id GET route that will return the corresponding course along with the User that owns that course and a 200 HTTP status code.
 
 router.get("/courses/:id", asyncHandler(async (req, res) => {
-
+    //return res.status(500).json({});
         const usersingleID = await Courses.findByPk(req.params.id, {
             include: {
                 model: Users,
                 attributes: ['firstName', 'lastName']
             }
         });
-        res.status(200).json(usersingleID);
+       // res.status(200).json(usersingleID);
+    if (usersingleID) {
+        res.json(usersingleID);
+    } else {
+        res.status(404).json('course not found');
+    }
+    
 }));
 
 // /api/courses POST route that will create a new course, set the Location header to the URI for the newly created course, and return a 201 HTTP status code and no content.
@@ -111,7 +118,7 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
 
 // // /* PUT update course. */
 router.put("/courses/:id", authenticateUser, asyncHandler(async (req, res) => {
-
+    //return res.status(500).json({}); //testing 500 routes thingy
     const courseFinderUpdate = await Courses.findByPk(req.params.id);
         // { where: {
         //     model: Users,
@@ -140,6 +147,7 @@ router.put("/courses/:id", authenticateUser, asyncHandler(async (req, res) => {
 
 // // /* DELETE individual course. */
 router.delete("/courses/:id", authenticateUser, asyncHandler(async (req, res) => {
+    //return res.status(500).json({}); // testing purposes
 
         const courseDeleteIndividual = await Courses.findByPk(req.params.id);
         console.log(req.currentUser.id);

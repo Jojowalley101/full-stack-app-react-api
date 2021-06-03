@@ -7,7 +7,6 @@
 
 
 import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown';
 import Form from './Form';
 
 export default class UpdateCourse extends Component {
@@ -25,10 +24,21 @@ componentDidMount() {
     const context = this.props.context;
     const id = this.props.match.params.id
     context.data.getCourse(id)
-        .then(course => this.setState({ title: course.title, description: course.description, estimatedTime: course.description, materialsNeeded: course.materialsNeeded, userStuff: course.User }))
+        .then(course => {
+            this.setState({ title: course.title, description: course.description, estimatedTime: course.description, materialsNeeded: course.materialsNeeded, userStuff: course.User })
+            if (course.userId === context.authenticatedUser.id) {
+                this.props.history.push(`/courses/${id}/update`);
+            } else {
+                this.props.history.push('/forbidden'); 
+            }
+        })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/notfound');
+            if (error.message === '404') {
+                this.props.history.push('/error');
+            } else {
+                this.props.history.push('/notfound');
+            }
         });
 }
 
@@ -42,15 +52,18 @@ render() {
         errors,
     } = this.state;
     return (
+        <main>
         <div className="wrap">
             <h2>Update Course</h2>
+            <form>
             <Form
                 cancel={this.cancel}
                 errors={errors}
                 submit={this.submit}
                 submitButtonText="Update Course"
                 elements={() => (
-                    <ReactMarkdown>
+                    // <ReactMarkdown>
+                    <React.Fragment>
                     <label >Course Title</label>
                         <input
                             id="title"
@@ -84,9 +97,12 @@ render() {
                             value={materialsNeeded}
                             onChange={this.change}
                             placeholder="Materials Needed" />
-                    </ReactMarkdown>
+                    
+                    </React.Fragment>
                 )} />
+                </form>
         </div>
+        </main>
     );
 }
 
@@ -119,13 +135,13 @@ submit = () => {
             if (errors.length) {
                 this.setState({errors})
             } else {
-                this.props.history.push(`/courses/${id}/update`);
+                this.props.history.push(`/courses/${id}`);
             }
         }
     )
     .catch((error) => {
         console.log(error);
-        this.props.history.push('/forbidden');
+        this.props.history.push('/error');
         
     });
 }

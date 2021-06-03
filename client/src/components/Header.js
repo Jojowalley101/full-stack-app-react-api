@@ -13,6 +13,8 @@ export default class Header extends React.PureComponent {
         const authUser  = context.authenticatedUser;
        //console.log(authUser);
         return (
+            <body>
+                <div id="root">
             <header>
             <div className="wrap header--flex">
                     <h1 className="header--logo"><a href="/">Courses</a></h1>
@@ -26,13 +28,15 @@ export default class Header extends React.PureComponent {
                         
                         (
                                 <React.Fragment>
-                                    <li><Link className="signup" to="/signup">Sign Up   </Link></li>
-                                    <li><Link className="signin" to="/signin"> Sign In</Link></li>
+                                    <Link className="signup" to="/signup">Sign Up   </Link>
+                                    <Link className="signin" to="/signin"> Sign In</Link>
                                 </React.Fragment>
                             )}
                     </nav>
                 </div>
             </header>
+                </div>
+            </body>
         );
     }
 };

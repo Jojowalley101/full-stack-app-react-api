@@ -1,8 +1,10 @@
 import React from 'react';
 
 export default () => (
+    <main>
     <div className="wrap">
-        <h1>Error</h1>
+        <h2>Error</h2>
         <p>Sorry! We just encountered an unexpected error.</p>
     </div>
+    </main>
 );

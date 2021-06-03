@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-//import Data from '../Data';
+
 
 export default class Courses extends Component {
     state = {
@@ -28,8 +28,13 @@ export default class Courses extends Component {
         context.data.getCourse(this.state.id)
             .then(course => this.setState({ course , user: course.User }))
             .catch((error) => {
-                console.log(error);
-                this.props.history.push('/notfound');
+                console.log(error.message);
+                if (error.message === '404') {
+                    console.log(error);
+                    this.props.history.push('/notfound');
+                } else {
+                    this.props.history.push('/error');
+                }
             });
     }
 
@@ -45,7 +50,7 @@ export default class Courses extends Component {
         })
             .catch((error) => {
                 console.log(error);
-                this.props.history.push('/notfound');
+                this.props.history.push('/error');
             });
     }
 
@@ -57,8 +62,10 @@ export default class Courses extends Component {
         // console.log(authUser.id);
         // console.log(user);
         // console.log(course.userId);
+        //children = wrap or action bar for react markdown i think
         return (
-            <div>
+            
+           <main>
             <div className="actions--bar">
                     <div className="wrap">
                         {(authUser && authUser.id === course.userId) ? (
@@ -73,22 +80,28 @@ export default class Courses extends Component {
                 </div>
                 
             <div className="wrap">
+                <h2>Course Detail</h2>
+                <form>
+                <div className="main--flex">
                 <div>
                     <h3 className="course--detail--title">Course Detail</h3>
                     <h4 className="course--name">{course.title}</h4>
                     <p> By { `${user.firstName} ${user.lastName}`} </p>
-                    <p> {course.description}</p>
+                    <ReactMarkdown children={course.description} />
                    </div>
                 <div>
-                    {/* <ReactMarkdown> */}
+                    
                     <h3 className="course--detail--title">Estimated Time</h3>
                     <p>{course.estimatedTime}</p>
                     <h3 className="course--detail--title">Materials Needed</h3>
-                    <ul className="course--detail--list"></ul> {course.materialsNeeded}
-                    {/* </ReactMarkdown> */}
+                    <ReactMarkdown className="course--detail--list" children={course.materialsNeeded}/> 
+                    
                 </div>
             </div>
+                    </form>
             </div>
+            </main>
+            
         )
     }
 }

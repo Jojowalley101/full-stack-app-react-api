@@ -33,8 +33,9 @@ export default class UserSignIn extends Component {
         const authUser = this.props.context.authenticatedUser;
 
         return (
+            <main>
             <div className="wrap">
-                <h1>Create Course</h1>
+                <h2>Create Course</h2>
                 <Form
                     cancel={this.cancel}
                     errors={errors}
@@ -81,6 +82,7 @@ export default class UserSignIn extends Component {
                     Don't have a user account? <Link to="/signup">Click here</Link> to sign up!
           </p> */}
             </div>
+            </main>
         );
     }
 

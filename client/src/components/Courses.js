@@ -20,7 +20,7 @@ export default class Courses extends Component {
             .then(courses => this.setState({courses}))
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/notfound');
+            this.props.history.push('/error');
 
         });
     }
@@ -31,6 +31,7 @@ export default class Courses extends Component {
 
        //console.log(courses);
         return (
+            <main>
             <div className="wrap main--grid">
                 {courses.map(course => 
                     <a className="course--module course--link" href={`courses/${course.id}`} key={course.id}>
@@ -47,6 +48,7 @@ export default class Courses extends Component {
                     </span>
                 </a>
             </div>
+            </main>
         )
     }
 }

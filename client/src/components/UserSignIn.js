@@ -24,6 +24,7 @@ export default class UserSignIn extends Component {
         } = this.state;
 
         return (
+            <main>
                 <div className="form--centered">
                     <h2>Sign In</h2>
                     <Form
@@ -33,6 +34,8 @@ export default class UserSignIn extends Component {
                         submitButtonText="Sign In"
                         elements={() => (
                             <React.Fragment>
+                                <form>
+                                <label for="emailAdress">Email Address</label>
                                 <input
                                     id="emailAddress"
                                     name="emailAddress"
@@ -40,6 +43,7 @@ export default class UserSignIn extends Component {
                                     value={emailAddress}
                                     onChange={this.change}
                                     placeholder="Email Address" />
+                                <label for="password">Password</label>
                                 <input
                                     id="password"
                                     name="password"
@@ -47,12 +51,14 @@ export default class UserSignIn extends Component {
                                     value={password}
                                     onChange={this.change}
                                     placeholder="Password" />
+                                </form>
                             </React.Fragment>
                         )} />
                     <p>
                         Don't have a user account? <Link to="/signup">Click here</Link> to sign up!
           </p>
                 </div>
+            </main>
         );
     }
 
