@@ -35,9 +35,9 @@ componentDidMount() {
         .catch((error) => {
             console.log(error);
             if (error.message === '404') {
-                this.props.history.push('/error');
-            } else {
                 this.props.history.push('/notfound');
+            } else {
+                this.props.history.push('/error');
             }
         });
 }
@@ -55,7 +55,7 @@ render() {
         <main>
         <div className="wrap">
             <h2>Update Course</h2>
-            <form>
+            {/* <form> */}
             <Form
                 cancel={this.cancel}
                 errors={errors}
@@ -100,7 +100,7 @@ render() {
                     
                     </React.Fragment>
                 )} />
-                </form>
+               {/* </form> */}
         </div>
         </main>
     );
@@ -147,7 +147,7 @@ submit = () => {
 }
 
 cancel = () => {
-    this.props.history.push(`/courses`);
+    this.props.history.push('/');
 
 }
 

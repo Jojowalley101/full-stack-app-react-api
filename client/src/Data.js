@@ -23,6 +23,7 @@ export default class Data {
 
     return fetch(url, options);
   }
+// function to get the users' credentials 
 
   async getUser(emailAddress, password) {
     const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password});
@@ -40,6 +41,8 @@ export default class Data {
     }
   }
   
+//function to create a user (used for sign up)
+
   async createUser(user) {
     const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {
@@ -55,6 +58,7 @@ export default class Data {
     }
   }
 
+//function that gets the courses from the database
 
   async getCourses() {
     const response = await this.api(`/courses`, 'GET', null);
@@ -98,6 +102,8 @@ export default class Data {
     }
   }
   
+//update course function to update the course
+
   async updateCourse(id, course, emailAddress, password) {
     const response = await this.api(`/courses/${id}`, 'PUT', course, true, {emailAddress, password});
     if (response.status === 204) {
@@ -113,6 +119,8 @@ export default class Data {
       throw new Error();
     }
   }
+
+  //delete course function to delete the course
 
   async deleteCourse(id, emailAddress, password) {
     const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });

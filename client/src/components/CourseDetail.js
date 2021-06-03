@@ -81,7 +81,7 @@ export default class Courses extends Component {
                 
             <div className="wrap">
                 <h2>Course Detail</h2>
-                <form>
+                {/* <form> */}
                 <div className="main--flex">
                 <div>
                     <h3 className="course--detail--title">Course Detail</h3>
@@ -98,7 +98,7 @@ export default class Courses extends Component {
                     
                 </div>
             </div>
-                    </form>
+                    {/* </form> */}
             </div>
             </main>
             

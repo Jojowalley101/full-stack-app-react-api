@@ -1,3 +1,4 @@
+// import statements below 
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -25,6 +26,8 @@ import Forbidden from './components/Forbidden';
 
 import PrivateRoute from './PrivateRoute';
 
+//use of withContext of each route is below
+
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
 const propsWithContext = withContext(CreateCourse);
@@ -38,6 +41,9 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const NotFoundWithContext = withContext(NotFound);
 const UnhandledErrorWithContext = withContext(UnhandledError);
 const ForbiddenWithContext = withContext(Forbidden);
+
+
+//This is the page that allow for all of my routes to work and be accessed 
 
 export default () => (
   <Router>

@@ -34,7 +34,7 @@ export default class UserSignIn extends Component {
                         submitButtonText="Sign In"
                         elements={() => (
                             <React.Fragment>
-                                <form>
+                                {/* <form> */}
                                 <label for="emailAdress">Email Address</label>
                                 <input
                                     id="emailAddress"
@@ -51,7 +51,7 @@ export default class UserSignIn extends Component {
                                     value={password}
                                     onChange={this.change}
                                     placeholder="Password" />
-                                </form>
+                                {/* </form> */}
                             </React.Fragment>
                         )} />
                     <p>
