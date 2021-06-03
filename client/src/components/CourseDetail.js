@@ -28,6 +28,7 @@ export default class Courses extends Component {
             .then(course => this.setState({ course , user: course.User }))
             .catch((error) => {
                 console.log(error);
+                this.props.history.push('/error');
             });
     }
 
@@ -43,7 +44,7 @@ export default class Courses extends Component {
         })
             .catch((error) => {
                 console.log(error);
-                this.props.history.push('/notfound');
+                this.props.history.push('/error');
             });
     }
 

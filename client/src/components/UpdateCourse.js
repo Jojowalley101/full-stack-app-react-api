@@ -27,7 +27,7 @@ componentDidMount() {
         .then(course => this.setState({ title: course.title, description: course.description, estimatedTime: course.description, materialsNeeded: course.materialsNeeded, userStuff: course.User }))
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/forbidden');
+            this.props.history.push('/error');
         });
 }
 
@@ -118,7 +118,7 @@ submit = () => {
             if (errors.length) {
                 this.setState({errors})
             } else {
-                this.props.history.push(`/courses/${id}`);
+                this.props.history.push(`/courses/${id}/update`);
             }
         }
     )
@@ -130,7 +130,7 @@ submit = () => {
 }
 
 cancel = () => {
-    this.props.history.push('/');
+    this.props.history.push(`/courses/${id}`);
 
 }
 
